@@ -1,6 +1,12 @@
 #!/usr/bin/python3
+
+"""Class Node that defines a node of a singly linked list"""
+
+
 class Node:
+    """Private instance attribute: data"""
     def __init__(self, data, next_node=None):
+        """Instantiation with data and next_node"""
         self.data = data
         self.next_node = next_node
 
@@ -12,7 +18,8 @@ class Node:
     def data(self, value):
         if not isinstance(value, int):
             raise TypeError("data must be an integer")
-        self.__data = value
+        else:
+            self.__data = value
 
     @property
     def next_node(self):
@@ -20,38 +27,41 @@ class Node:
 
     @next_node.setter
     def next_node(self, value):
-        if not isinstance(value, Node) and value is not None:
+        if value is None or isinstance(value, Node):
+            self.__next_node = value
+        else:
             raise TypeError("next_node must be a Node object")
-        self.__next_node = value
+
+
+"""Class SinglyLinkedList that defines a singly linked list"""
 
 
 class SinglyLinkedList:
-    def __str__(self):
-        rtn = ""
-        ptr = self.__head
-
-        while ptr is not None:
-            rtn += str(ptr.data)
-            if ptr.next_node is not None:
-                rtn += "\n"
-            ptr = ptr.next_node
-
-        return rtn
-
+    """Private instance attribute: head"""
     def __init__(self):
+        """Simple instantiation"""
         self.__head = None
 
+    def __str__(self):
+        """Should be printable"""
+        current = self.__head
+        string = ""
+        while current:
+            string += str(current.data) + "\n"
+            current = current.next_node
+        return string[:-1]
+
     def sorted_insert(self, value):
-        ptr = self.__head
-
-        while ptr is not None:
-            if ptr.data > value:
-                break
-            ptr_prev = ptr
-            ptr = ptr.next_node
-
-        newNode = Node(value, ptr)
-        if ptr == self.__head:
-            self.__head = newNode
+        """Public instance method: def sorted_insert(self, value)"""
+        new_node = Node(value)
+        if self.__head is None:
+            self.__head = new_node
+        elif value < self.__head.data:
+            new_node.next_node = self.__head
+            self.__head = new_node
         else:
-            ptr_prev.next_node = newNode
+            current = self.__head
+            while current.next_node and current.next_node.data < value:
+                current = current.next_node
+            new_node.next_node = current.next_node
+            current.next_node = new_node
