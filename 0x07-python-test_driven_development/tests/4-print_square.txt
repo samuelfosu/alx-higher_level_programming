@@ -1,0 +1,16 @@
+The 4-print_square module contains a print_square function that prints a square with the # character. The function takes an integer size as input, which is the side length of the square to be printed.
+
+The provided test cases are:
+
+Creating a square of size 5 and printing it.
+Passing 0 as the size of the square.
+Passing a float as the size of the square.
+Passing a string as the size of the square.
+Passing a negative integer as the size of the square.
+Passing None as the size of the square.
+Missing the size argument when calling the function.
+All of the test cases are testing the function's behavior when the input size parameter is invalid. The function raises a TypeError if the size is not an integer or a ValueError if the size is a negative integer.
+
+The first test case verifies that the function prints a square of size 5 correctly. The second test case checks that the function raises a ValueError when passed 0 as the size of the square. The third test case checks that the function raises a TypeError when passed a float as the size of the square. The fourth test case checks that the function raises a TypeError when passed a string as the size of the square. The fifth test case checks that the function raises a ValueError when passed a negative integer as the size of the square. The sixth test case checks that the function raises a TypeError when passed None as the size of the square. The last test case checks that the function raises a TypeError when called without the size argument.
+
+Overall, the test cases are comprehensive and cover all possible edge cases. The implementation seems to work correctly for the given requirements.
