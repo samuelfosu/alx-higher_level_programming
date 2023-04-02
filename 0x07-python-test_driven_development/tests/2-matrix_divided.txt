@@ -53,4 +53,4 @@ except TypeError:
 
 # Example 10: dividing a matrix which some of its elements aren't integer/float numbers, which raises a TypeError
 try:
-    result = matrix_divided([[2.7, 4], ['6', 8.4], [10.1, '12'], [5.3, '10.2', 15.8]], 5
+    result = matrix_divided([[2.7, 4], ['6', 8.4], [10.1, '12'], [5.3, '10.2', 15.8]],i 5
