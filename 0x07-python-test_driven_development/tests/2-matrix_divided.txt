@@ -1,0 +1,56 @@
+imported_module = __import__('2-matrix_divided')
+matrix_divided = imported_module.matrix_divided
+
+# Example 1: dividing a matrix by 3
+result = matrix_divided([[1, 2, 3], [4, 5, 6]], 3)
+print(result)  # [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+# Example 2: dividing a matrix by 0, which raises a ZeroDivisionError
+try:
+    result = matrix_divided([[1, 2, 3], [4, 5, 6]], 0)
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+
+# Example 3: dividing a matrix by a float number
+result = matrix_divided([[10, 20, 30], [1.33, 3.74, 6.89], [-8, -9.71, 0]], 5.3)
+print(result)  # [[1.89, 3.77, 5.66], [0.25, 0.71, 1.3], [-1.51, -1.83, 0.0]]
+
+# Example 4: passing an empty matrix, which raises a TypeError
+try:
+    result = matrix_divided([], 10)
+except TypeError:
+    print("Matrix must be a matrix (list of lists) of integers/floats.")
+
+# Example 5: passing a tuple as an argument, which raises a TypeError
+try:
+    result = matrix_divided((3, 6, 9), 3)
+except TypeError:
+    print("Matrix must be a matrix (list of lists) of integers/floats.")
+
+# Example 6: dividing a matrix which its rows don't have the same size, which raises a TypeError
+try:
+    result = matrix_divided([[22, 34], [2.78, 7.1, -10, 2], [-8]], 3)
+except TypeError:
+    print("Each row of the matrix must have the same size.")
+
+# Example 7: dividing a matrix which its rows don't have the same size, which raises a TypeError
+try:
+    result = matrix_divided([[2, 4], [6.8], [10, 12]], 12)
+except TypeError:
+    print("Each row of the matrix must have the same size.")
+
+# Example 8: dividing a matrix which its elements aren't integer/float numbers, which raises a TypeError
+try:
+    result = matrix_divided([["Hello", "World"], ["Hello", "Holberton"]], 10)
+except TypeError:
+    print("Matrix must be a matrix (list of lists) of integers/floats.")
+
+# Example 9: dividing a matrix which its elements aren't integer/float numbers, which raises a TypeError
+try:
+    result = matrix_divided([["1"], ["2", "3"], ["5", "6", "7"]], 10)
+except TypeError:
+    print("Matrix must be a matrix (list of lists) of integers/floats.")
+
+# Example 10: dividing a matrix which some of its elements aren't integer/float numbers, which raises a TypeError
+try:
+    result = matrix_divided([[2.7, 4], ['6', 8.4], [10.1, '12'], [5.3, '10.2', 15.8]], 5
