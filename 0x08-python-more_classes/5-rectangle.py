@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 """
-Write a class Rectangle that defines a rectangle
+A class that defines a Rectangle
 """
 
 
 class Rectangle:
-    """ A class Rectangle that defines a rectangle """
+    """ Defines rectangle """
 
     def __init__(self, width=0, height=0):
-        """ initializes the instance
+        """ Initializes instance
         Args:
             width: rectangle width
             height: rectangle height
@@ -19,7 +19,7 @@ class Rectangle:
 
     @property
     def width(self):
-        """ returns the value of the width
+        """ Returns value of width
         Returns:
             rectangle width
         """
@@ -28,7 +28,7 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
-        """ defines the width
+        """ Defines width
         Args:
             value: width
         Raises:
@@ -44,7 +44,7 @@ class Rectangle:
 
     @property
     def height(self):
-        """ returns the value of the height
+        """ Returns value of the height
         Returns:
             rectangle height
         """
@@ -53,7 +53,7 @@ class Rectangle:
 
     @height.setter
     def height(self, value):
-        """ defines the height
+        """ Defines the height
         Args:
             value: height
         Raises:
@@ -68,7 +68,7 @@ class Rectangle:
         self.__height = value
 
     def area(self):
-        """ calculates the Rectangle area
+        """ Calculates the area
         Returns:
             rectangle area
         """
@@ -76,7 +76,7 @@ class Rectangle:
         return self.width * self.height
 
     def perimeter(self):
-        """ calculates the Rectangle perimeter
+        """ Calculates the perimeter
         Returns:
             rectangle perimeter
         """
@@ -87,9 +87,9 @@ class Rectangle:
         return (2 * self.width) + (2 * self.height)
 
     def __str__(self):
-        """ returns the Rectangle #
+        """ Returns the Rectangle #
         Returns:
-            str of the rectangle
+            string of the rectangle
         """
 
         rectangle = ""
@@ -103,15 +103,15 @@ class Rectangle:
         return rectangle[:-1]
 
     def __repr__(self):
-        """ returns the string represantion of the instance
+        """ Returns string represention of instance
         Returns:
-            string represenation of the object
+            string represetation of object
         """
 
         return "Rectangle({:d}, {:d})".format(self.width, self.height)
 
     def __del__(self):
-        """ prints a message when the instance is deleted
+        """ Prints message when instance is deleted
         """
 
         print("Bye rectangle...")
