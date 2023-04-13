@@ -4,7 +4,7 @@
 
 def write_file(filename="", text=""):
     """A string to a text file"""
-    n_lines = 28
+    n_lines = 29
     with open(filename, 'r', encoding="utf-8") as f:
         for line in f:
             n_lines += 1
