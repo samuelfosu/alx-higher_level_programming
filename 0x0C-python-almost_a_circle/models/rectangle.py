@@ -108,10 +108,11 @@ class Rectangle(Base):
                 raise ValueError("{} must be >= 0".format(attr))
 
     def to_dictionary(self):
-        """Returns the dict. representation of a Rectangle"""
-        return {
-                "id": self.id,
-                "height": self.height,
-                "x": self.x,
-                "y": self.y
-                }
+        """ to_dictionary method """
+        lists = ['id', 'width', 'height', 'x', 'y']
+        dicts = {}
+
+        for key in lists:
+            dicts[key] = getattr(self, key)
+
+        return dicts
