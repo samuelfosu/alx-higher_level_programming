@@ -3,27 +3,16 @@
 List all states with a name starting with N
 """
 
-import MySQLdb
 import sys
+import MySQLdb
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    """Connect to MySQL database"""
     db = MySQLdb.connect(
-        user=sys.argv[1],
-        passwd=sys.argv[2],
-        db=sys.argv[3],
-        port=3306,
-        host='localhost')
+            user=sys.argv[1],
+            password=sys.argv[2],
+            database=sys.argv[3])
 
-    cursor = db.cursor()
-    cursor.execute("SELECT * \
-                    FROM states \
-                    WHERE CONVERT(`name` USING Latin1) \
-                    COLLATE Latin1_General_CS \
-                    LIKE 'N%';")
-
-    states = cursor.fetchall()
-    for state in states:
-        print(state)
-    cursor.close()
-    db.close()
-
+    cur = db.cursor()
+    cur.execute("SELECT * FROM `states` ORDER BY `id`")
+    [print(state) for state in cur.fetchall() if state[1][0] == "N"]
