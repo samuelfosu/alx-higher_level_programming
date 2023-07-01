@@ -1,24 +1,22 @@
 #!/usr/bin/python3
 """Script sends a POST request to http://0.0.0.0:5000/search_user"""
-import request
-import sys
 
 
 if __name__ == "__main__":
-    data = ['q': ""]
+    import requests
+    import sys
 
-    try:
-        data["q" = sys.argv[1]
-    except:
-        pass
-    
-    r = requests.post("http://0.0.0.0:5000/search_user", data)
+    if len(sys.argv) > 1:
+        q = sys.argv[1]
+    else:
+        q = ""
 
+    res = requests.post('http://0.0.0.0:5000/search_user', data={'q': q})
     try:
-        json_o = r.json()
-        if not json_o:
-            print("No result")
+        res_dict = res.json()
+        if res_dict == {}:
+            print('No result')
         else:
-            print("[{}] {}".format(json_o.get('id'), json_o.get('name')))
-    except:
+            print("[{}] {}".format(res_dict.get("id"), res_dict.get("name")))
+    except ValueError:
         print("Not a valid JSON")
