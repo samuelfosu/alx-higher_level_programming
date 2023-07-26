@@ -1,4 +1,5 @@
 #!/usr/bin/node
+const API_URL = 'https://jsonplaceholder.typicode.com/todos';
 const request = require('request');
 
 request(process.argv[2], function (err, response, body) {
