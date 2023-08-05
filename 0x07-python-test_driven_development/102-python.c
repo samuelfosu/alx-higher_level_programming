@@ -1,35 +1,37 @@
 #include <stdio.h>
 #include <string.h>
-#include <Python.h>
+#include <stdlib.h>
+#include <wchar.h>
 
 /**
- * print_python_string - Prints string
- *
- * @p: Python Object
- * Return: 0
+ * print_python_string - prints info about Python strings
+ * @p: PyObject
  */
 
 void print_python_string(PyObject *p)
 {
+	PyUnicodeObject *str;
+	Py_ssize_t size, i;
+	wchar_t *wide_str;
 
-	PyObject *str, *repr;
-
-	(void)repr;
-	printf("[.] string object info\n");
-
-	if (strcmp(p->ob_type->tp_name, "str"))
+	if (!PyUnicode_check(p))
 	{
-		printf("  [ERROR] Invalid String Object\n");
+		printf("Error: Invalid String Object\n");
 		return;
 	}
 
-	if (PyUnicode_IS_COMPACT_ASCII(p))
-		printf("  type: compact ascii\n");
-	else
-		printf("  type: compact unicode object\n");
+	str = (PyUnicodeObject *)p;
+	size = PyUnicode_GetLength(p);
+	wide_str = PyUnicode_AsWideCharString(p, &size);
 
-	repr = PyObject_Repr(p);
-	str = PyUnicode_AsEncodedString(p, "utf-8", "~E~");
-	printf("  length: %ld\n", PyUnicode_GET_SIZE(p));
-	printf("  value: %s\n", PyBytes_AsString(str));
+	printf("  %ls", wide_str);
+
+	printf("\n  type: %s\n", PyUnicode_GetTypeName((PyObject *)str));
+	printf("  length: %zd\n", size);
+	printf("  value: %ls\n", wide_str);
+
+	for (i = 0; i < size; i++)
+	{
+		printf("  %ld: %04x\n", i, wide_str[i]);
+	}
 }
